@@ -4,40 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "compile solution",
+            "label": "run solution test",
             "type": "shell",
-            "command": "mvn -B compile",
-            "group": "build",
-            "options": {
-                "cwd": "${workspaceFolder}/sudoku-solver/solution"
-            },
-        },
-        {
-            "label": "verify solution",
-            "type": "shell",
-            "command": "mvn -B verify",
-            "group": "build",
-            "options": {
-                "cwd": "${workspaceFolder}/sudoku-solver/solution"
-            },
-        },
-        {
-            "label": "test solution",
-            "type": "shell",
-            "command": "mvn -B test",
-            "group": "test",
-            "options": {
-                "cwd": "${workspaceFolder}/sudoku-solver/solution"
-            },
-        },
-        {
-            "type": "shell",
-            "label": "run solution",
-            "command": "mvn package exec:java",
-            "options": {
-                "cwd": "${workspaceFolder}/sudoku-solver/solution"
-            },
-            "group": "build"
+            "command": "mvn -f ${workspaceFolder}/sudoku-solver/solution/pom.xml test"
         }
     ]
 }
