@@ -69,8 +69,7 @@ class SudokuSolverTest {
 
     @Test
     void isPossibleFindsDuplicateInRow() {
-      //  assertFalse(sudokuSolver.isPossible(6, 2, 5));
-        assertTrue(sudokuSolver.isPossible(6, 2, 5));
+        assertFalse(sudokuSolver.isPossible(6, 2, 5));
     }
 
     @Test
