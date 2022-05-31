@@ -14,6 +14,9 @@ public class SudokuSolver {
     }
 
     public String getArrayStyleString(int[][] grid){
+        if(grid == null){
+            return "ERROR Solution is null";
+        }
         StringBuilder sb = new StringBuilder("{\n");
         for(int x=0; x<9; x++){
             sb.append("{");
@@ -44,6 +47,11 @@ public class SudokuSolver {
                 return false;
             }
         }
+        
+        return isPossibleInBlock(x, y, n);
+    }
+
+    private boolean isPossibleInBlock(int x, int y, int n){
         int x0 = Math.floorDiv(x, 3)*3;
         int y0 = Math.floorDiv(y, 3)*3;
         for(int i=0; i<3; i++){
@@ -53,7 +61,6 @@ public class SudokuSolver {
                 }
             }
         }
-
         return true;
     }
 

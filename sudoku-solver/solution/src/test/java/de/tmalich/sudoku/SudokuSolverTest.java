@@ -96,4 +96,9 @@ class SudokuSolverTest {
     void isPossibleFindsNoDuplicateInSquare() {
         assertTrue(sudokuSolver.isPossible(0, 0, 9));
     }
+
+    @Test
+    void getArrayStyleStringReturnsErrorOnNullImport(){
+        assertEquals("ERROR Solution is null", sudokuSolver.getArrayStyleString(null)); 
+    }
 }

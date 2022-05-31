@@ -6,48 +6,25 @@ public class SudokuSolver {
     private int[][] sudoku;
     private int[][] solution;
 
-    public String getArrayStyleString(int[][] grid){
-        StringBuilder sb = new StringBuilder("{\n");
-        for(int x=0; x<9; x++){
-            sb.append("{");
-            for(int y=0; y<9; y++){
-                sb.append(grid[x][y]);
-                if(y<8){
-                    sb.append(",");
-                }
-            }
-            if(x<8) {
-                sb.append("},\n");
-            }else{
-                sb.append("}\n");
-            }
-        }
-        sb.append("}\n");
-        return sb.toString();
+    public void solve(){ // 4.b
+        return;
     }
-
 
     public boolean isPossible(int x, int y, int n){
         return false;
     }
 
-    public void solve(){
-        for(int x=0; x<9; x++){
-            for(int y=0; y<9; y++){
-                if(sudoku[x][y] == 0){
-                    for(int n=1; n<10; n++){
-                        if(isPossible(x,y,n)){
-                            sudoku[x][y] = n;
-                            solve();
-                            //System.out.println(String.format("(%s,%s with %s is deadend)",x,y,n));
-                            sudoku[x][y] = 0;
-                        }
-                    }
-                    return;
+    private boolean isPossibleInBlock(int x, int y, int n){ // 3.a
+        int x0 = Math.floorDiv(x, 3)*3;
+        int y0 = Math.floorDiv(y, 3)*3;
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+                if(sudoku[x0+i][y0+j] == n){
+                    return false;
                 }
             }
         }
-        solution = deepCopy(sudoku);
+        return true;
     }
 
     private int[][] deepCopy(int[][] src){
@@ -68,6 +45,26 @@ public class SudokuSolver {
 
     public int[][] getSolution() {
         return solution;
+    }
+
+    public String getArrayStyleString(int[][] grid){
+        StringBuilder sb = new StringBuilder("{\n");
+        for(int x=0; x<9; x++){
+            sb.append("{");
+            for(int y=0; y<9; y++){
+                sb.append(grid[x][y]);
+                if(y<8){
+                    sb.append(",");
+                }
+            }
+            if(x<8) {
+                sb.append("},\n");
+            }else{
+                sb.append("}\n");
+            }
+        }
+        sb.append("}\n");
+        return sb.toString();
     }
 
     public static void main(String[] args){
