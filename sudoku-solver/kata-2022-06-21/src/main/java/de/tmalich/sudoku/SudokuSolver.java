@@ -9,6 +9,25 @@ public class SudokuSolver {
     private int[][] sudoku;
     private int[][] solution;
 
+    public void solve(){
+        for(int x=0; x<9; x++){
+            for(int y=0; y<9; y++){
+                if(sudoku[x][y] == 0){
+                    for(int n=1; n<10; n++){
+                        if(isPossible(x,y,n)){
+                            sudoku[x][y] = n;
+                        }
+                    }
+                    if(!isPossible(x,y,sudoku[x][y])){
+                        sudoku[x][y] = 0;
+                        solve();
+                    }
+                    // return;
+                }
+            }
+        }
+        solution = deepCopy(sudoku);
+    }
 
     private ArrayList<Integer> findSolution(int row, int column) {
         ArrayList<Integer> possibleValues = new ArrayList<>();
@@ -40,7 +59,7 @@ public class SudokuSolver {
         //return 0;
     }
 
-    public void solve() {
+    public void solve2() {
         List<Pair<Integer, Integer>> zeros = locateSolvable();
         solveZeros(zeros);
     }
@@ -58,22 +77,31 @@ public class SudokuSolver {
     }
 
     private void solveZeros(List<Pair<Integer, Integer>> solvable) {
-        List<Pair<Integer, Integer>> remaining = new ArrayList<>();
+        boolean deadEnd=false;
+        int deadEndRow = 0;
+        int deadEndColumn = 0;
         for (Pair pair : solvable) {
             int row = (Integer) pair.getLeft();
             int column = (Integer) pair.getRight();
 
-            ArrayList<Integer> sol = findSolution(row, column);
-            if (sol.size() == 1 && sol.get(0) != null) {
-                solution[row][column] = sol.get(0);
-            } else {
-                remaining.add(pair);
-            }
-
+            ArrayList<Integer> solutions = findSolution(row, column);
+            for (Integer sol : solutions) {
+                solution[row][column] = sol;
+                if(!isPossible(row, column, sol)){
+                    solution[row][column] = 0;
+                    solveZeros(solvable);
+                }
+             }
+           // if (solutions.size() > 1 && !isPossible(row, column, solutions.get(0))) {
+           //     deadEnd = true;
+           //     deadEndRow = row;
+           //     deadEndColumn = column;
+           // }
         }
-        if (!remaining.isEmpty()) {
-            solveZeros(remaining);
-        }
+        //if(deadEnd) {
+        //    solveZeros(solvable);
+        //    solution[deadEndRow][deadEndColumn] = 0;
+        //}
     }
 
     public boolean isPossible(int row, int column, int value) {
@@ -82,7 +110,7 @@ public class SudokuSolver {
 
     private boolean isPossibleInRow(int row, int column, int value) {
         for (int i = 0; i < 9; i++) {
-            if (solution[row][i] == value) {
+            if (sudoku[row][i] == value) {
                 return false;
             }
         }
@@ -91,7 +119,7 @@ public class SudokuSolver {
 
     private boolean isPossibleInColumn(int row, int column, int value) {
         for (int i = 0; i < 9; i++) {
-            if (solution[i][column] == value) {
+            if (sudoku[i][column] == value) {
                 return false;
             }
         }
@@ -103,7 +131,7 @@ public class SudokuSolver {
         int column0 = Math.floorDiv(column, 3) * 3;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (solution[row0 + i][column0 + j] == value) {
+                if (sudoku[row0 + i][column0 + j] == value) {
                     return false;
                 }
             }
