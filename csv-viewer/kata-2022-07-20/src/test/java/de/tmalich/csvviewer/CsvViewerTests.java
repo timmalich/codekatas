@@ -39,9 +39,9 @@ class CsvViewerTests {
 
     @Test
     public void inputList_returnSingleHeader() {
-		// expexcted
-		// |h1|
-		// |--|
+        // expexcted
+        // |h1|
+        // |--|
         csvViewer.lines = List.of("h1");
 
         assertEquals(Arrays.asList("|h1|", "|--|"), csvViewer.getFormattedLines());
@@ -49,18 +49,33 @@ class CsvViewerTests {
 
     @Test
     public void inputList_returnHeaderWithTwoColumns() {
-		// expexcted
-		// |h1|h2|
-		// |--|--|
+        // expexcted
+        // |h1|h2|
+        // |--|--|
         csvViewer.lines = List.of("h1;h2");
 
         assertEquals(List.of("|h1|h2|", "|--|--|"), csvViewer.getFormattedLines());
     }
 
+    @Test
+    public void inputList_returnHeaderWithDifferentHeaderColumnSizes() {
+        csvViewer.lines = List.of("h1;header2");
 
-//    @Test
-//    public void inputList_isReturnedFormatted() {
-//        csvViewer.lines = Arrays.asList("h1;h2", "v-1;v-2");
-//        // assertEquals(Arrays.asList("h1 |h2 ", "v-1|v-2"), csvViewer.getFormattedLines());
-//    }
+        assertEquals(List.of("|h1|header2|", "|--|-------|"), csvViewer.getFormattedLines());
+    }
+
+    @Test
+    public void inputList_returnHeaderWithOneDataRow() {
+        csvViewer.lines = List.of("h1;h2", "v1;v2");
+
+        assertEquals(List.of("|h1|h2|", "|--|--|", "|v1|v2|"), csvViewer.getFormattedLines());
+    }
+
+    @Test
+    public void inputList_returnHeaderWithDifferentColumnSizesWithOneDataRow() {
+        csvViewer.lines = List.of("h11;h2", "v1;v2");
+
+        assertEquals(List.of("|h11|h2|", "|---|--|", "|v1 |v2|"), csvViewer.getFormattedLines());
+    }
+
 }

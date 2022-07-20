@@ -41,22 +41,65 @@ public class CsvViewer {
     }
 
     protected List<String> getFormattedLines() {
+        List<String> formattedLines = new ArrayList<>();
+
+        List<Integer> columnSizes = calculateColumnSizes();
+
+        formatHeader(formattedLines, columnSizes);
+        formatData(formattedLines, columnSizes);
+
+        return formattedLines;
+    }
+
+    private List<Integer> calculateColumnSizes() {
+        List<Integer> bla = new ArrayList<>();
+
+        for (String line : lines) {
+            String[] columns = line.split(SEPERATOR);
+            for (int i = 0; i < columns.length; i++) {
+                String column = columns[i];
+                if (bla.size() == i) {
+                    bla.add(column.length());
+                } else {
+                    bla.set(i, Math.max(bla.get(i), column.length()));
+                }
+            }
+        }
+        return bla;
+    }
+
+    private void formatHeader(List<String> formattedLines, List<Integer> columnSizes) {
         String line = lines.get(0);
         String[] columns = line.split(SEPERATOR);
-        List<String> formattedLines = new ArrayList<>();
         StringBuilder header = new StringBuilder();
         StringBuilder headerSeperator = new StringBuilder();
-        for (String column : columns) {
+        for (int i = 0; i < columns.length; i++) {
+            String column = columns[i];
             header.append(CELL_BORDER);
             header.append(column);
             headerSeperator.append(CELL_BORDER);
-            headerSeperator.append(MINUS.repeat(column.length()));
+            headerSeperator.append(MINUS.repeat(columnSizes.get(i)));
         }
         header.append(CELL_BORDER);
         headerSeperator.append(CELL_BORDER);
         formattedLines.add(header.toString());
         formattedLines.add(headerSeperator.toString());
+    }
 
-        return formattedLines;
+    private void formatData(List<String> formattedLines, List<Integer> columnSizes) {
+        for (int i = 1; i < lines.size(); i++) {
+            String line = lines.get(i);
+            String[] columns = line.split(SEPERATOR);
+            StringBuilder values = new StringBuilder();
+            for (int j = 0; j < columns.length; j++) {
+                String column = columns[j];
+                values.append(CELL_BORDER);
+                values.append(column);
+                int width = columnSizes.get(j);
+                values.append(" ".repeat(width - column.length()));
+            }
+            values.append(CELL_BORDER);
+            formattedLines.add(values.toString());
+        }
     }
 }
