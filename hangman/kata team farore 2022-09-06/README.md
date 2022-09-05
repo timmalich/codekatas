@@ -27,6 +27,8 @@ Die Kata wird aufgrund der größe gesplitted in 2 Teams:
 - Chefin Hellenkerker der Schöne
 - Kaydamn Cage der Starke
 
+
+
 ## Galgenmännchen
 
 Erfülle die Klasse Hangman.java mit "leben".
