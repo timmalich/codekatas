@@ -2,6 +2,31 @@
 
 Basierend auf: https://ccd-school.de/coding-dojo/class-katas/galgenmaennchen/
 
+## Ablauf
+1) Intro [5 min]
+2) Selbststudium zur Kata [10 min]
+3) Abstimmung zum Vorgehen in der Kata [10 min]
+4) Start in 2 Teams um: 13:30 Uhr
+5) Zusammenkunft um 15:15 Uhr 
+6) Kurze Code Vorstellung je team 5 min
+7) Diskussion
+8) Feedback um 15:45Uhr
+
+Die Kata wird aufgrund der größe gesplitted in 2 Teams:
+
+### Team Nayru
+- Mathbias Michter der Große
+- Friss Kaule der Schnelle
+- Prank Steif der Trickreiche
+- Candreas Klüger der Erfahrene
+- Volter Weiß der König
+
+### Team Farore
+- Bin Mal Ich der Lustige
+- Mathbias Möbele der Experte
+- Chefin Hellenkerker der Schöne
+- Kaydamn Cage der Starke
+
 ## Galgenmännchen
 
 Erfülle die Klasse Hangman.java mit "leben".
