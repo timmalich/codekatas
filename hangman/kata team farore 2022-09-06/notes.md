@@ -1,22 +1,28 @@
 # Discussion
 
 ## Feedback
-Teilnehmer: ?
+Teilnehmer: 8
 
 ### Zur Kata:
 kacke:    0
-So lala:  0
-gut:      0
-mega:     0
+So lala:  1
+gut:      4
+mega:     3
 
 ### Zum Setup:
-kacke: 0
+kacke:    1
 So lala:  0
-gut:      0
-mega:     0
+gut:      3
+mega:     2
+
+Shortcuts sind nicht wie gewohnt
+Brauchen kein neues Tooling dafür, passt
 
 ### Notizen
 - Hamcrest einbinden
+- Main Klasse in Vorbereitung bereits extrahieren
 
 ## Learnings:
-- 
+- Leerzeichen in Modulnamen sind schlecht, zerstört browser
+- Domänenübergreifende zusammenarbeit macht spaß
+- Streams VS Loops könnte den 3. Weltkrieg auslösen

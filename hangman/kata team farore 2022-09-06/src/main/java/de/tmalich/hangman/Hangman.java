@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Hangman {
-    private final char[] wordToGuess;
+    private final String wordToGuess;
 
     private final char[] output;
-    private final int numMaxTries;
+    private final int numMaxGuesses;
     private int numTries = 0;
 
     public static void main(String args[]) throws IOException {
@@ -25,15 +25,14 @@ public class Hangman {
     }
 
     public Hangman(String newWordToGuess, int numMaxTries) {
-        this.numMaxTries = numMaxTries;
+        this.numMaxGuesses = numMaxTries;
 
-        wordToGuess = newWordToGuess.toLowerCase().toCharArray();
-        output = new char[wordToGuess.length];
-        for (int i = 0; i < wordToGuess.length; i++) {
+        wordToGuess = newWordToGuess.toLowerCase();
+        output = new char[wordToGuess.length()];
+        for (int i = 0; i < wordToGuess.length(); i++) {
             output[i] = '*';
         }
     }
-
 
     public Hangman(String newWordToGuess) {
         this(newWordToGuess, 0);
@@ -41,7 +40,7 @@ public class Hangman {
 
     public String guess(String s) {
         numTries++;
-        if (numMaxTries != 0 && numTries > numMaxTries) {
+        if (numMaxGuesses != 0 && numTries > numMaxGuesses) {
             return "failed";
         }
         if (s != null && !s.isEmpty()) {
@@ -56,16 +55,16 @@ public class Hangman {
 
     private void transferCorrectGuess(String guess) {
         char c = guess.toLowerCase().charAt(0);
-        for (int i = 0; i < wordToGuess.length; i++) {
-            if (wordToGuess[i] == c) {
+        for (int i = 0; i < wordToGuess.length(); i++) {
+            if (wordToGuess.charAt(i) == c) {
                 output[i] = c;
             }
         }
     }
 
     private String guessWord(String guess) {
-        if (guess.equals(String.valueOf(wordToGuess))) {
-            return String.valueOf(wordToGuess);
+        if (guess.equals(wordToGuess)) {
+            return wordToGuess;
         } else {
             return String.valueOf(output);
         }
@@ -76,6 +75,6 @@ public class Hangman {
     }
 
     public boolean isSolved() {
-        return String.valueOf(wordToGuess).equalsIgnoreCase(String.valueOf(output));
+        return wordToGuess.equalsIgnoreCase(String.valueOf(output));
     }
 }

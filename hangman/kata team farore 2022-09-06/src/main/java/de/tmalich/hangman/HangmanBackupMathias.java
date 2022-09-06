@@ -52,7 +52,7 @@ public class HangmanBackupMathias {
 
     }
 
-/*
+
     private static class Character {
         private char me;
         private boolean revealed;
@@ -71,5 +71,5 @@ public class HangmanBackupMathias {
             return revealed ? me : '*';
         }
     }
-    */
+    
 }
