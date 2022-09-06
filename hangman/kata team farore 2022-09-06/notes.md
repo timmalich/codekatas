@@ -16,7 +16,7 @@ gut:      0
 mega:     0
 
 ### Notizen
-- 
+- Hamcrest einbinden
 
 ## Learnings:
 - 
