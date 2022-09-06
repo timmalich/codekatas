@@ -19,13 +19,13 @@ Die Kata wird aufgrund der größe gesplitted in 2 Teams:
 - Friss Kaule der Schnelle
 - Prank Steif der Trickreiche
 - Candreas Klüger der Erfahrene
-- Volter Weiß der König
+
 
 ### Team Farore
 - Bin Mal Ich der Lustige
 - Mathbias Möbele der Experte
 - Chefin Hellenkerker der Schöne
-- Kaydamn Cage der Starke
+- Volter Weiß der König
 
 
 
