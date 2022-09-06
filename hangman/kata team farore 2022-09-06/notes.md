@@ -21,6 +21,8 @@ Brauchen kein neues Tooling dafür, passt
 ### Notizen
 - Hamcrest einbinden
 - Main Klasse in Vorbereitung bereits extrahieren
+- Idee: eventuell mal eine Kata mit Frontend und Backend
+- Idee: Eventuell eine ganztages Kata mit POs, Frontend, Backend und Cloud
 
 ## Learnings:
 - Leerzeichen in Modulnamen sind schlecht, zerstört browser
